@@ -1041,3 +1041,142 @@ Which of the following statements are true? (Select two).
 	- ==Static Teaming==
 
 ---
+## Module 5
+### Quiz 5.1
+1. Which of the following services automatically creates and deletes host records when an IP address lease is created or released?
+	- ==Dynamic DNS==
+
+2. You are the network administrator for a small consulting firm. The firm has recently rolled out a new intranet site, and you are responsible for configuring the DNS. You are able to connect to the intranet site by using the IP address, but you cannot connect when you use the hostname. Which of the following do you need to configure so that the site can be accessed with the hostname?
+	- ==Forward lookup zone==
+
+3. Which of the following is the first place a computer looks at during the name resolution process?
+	- ==HOSTS file==
+
+4. Listed below are several DNS record types. Match each record type on the left with its function on the right.
+	1. Points a hostname to an IPv4 address
+		- ==A==
+	2. Provides alternate names to hosts that already have a host record
+		- ==CNAME==
+	3. Points an IP address to a hostname
+		- ==PTR==
+	4. Points a hostname to an IPv6 address
+		- ==AAAA==
+	5. Identifies servers that can be used to deliver mail
+		- ==MX==
+
+5. You need to enable hosts on your network to find the IP address of logical names, such as srv1.myserver.com. Which device should you use?
+	- ==DNS Server==
+
+6. You manage a network with Windows clients, multiple subnets, and Windows DNS servers. You want to be able to resolve a hostname for a server on your network to its IPv4 address. What should you do?
+	- ==Add an A record on the DNS server.==
+
+7. You manage the intranet servers for EastSim Corporation. The company network has three domains: eastsim.com, asiapac.eastsim.com, and emea.eastsim.com. The main company website runs on the web1.eastsim.com server with a public IP address of 101.12.155.99. A host record for the server already exists in the eastsim.com zone. You want internet users to be able to use the URL http://www.eastsim.com to reach the website. Which type of DNS record should you create?
+	-==CNAME==
+
+8. Your organization's IT department has developed a custom application that reports the hostname of each client that tries to access three of the servers in the accounting department. These servers store sensitive information. You do a random test and find that the program is not reporting the hostnames for some clients, even though it properly records their IP addresses. This is because the custom application submits reverse lookup requests to the DNS server to discover the hostnames for the specified IP addresses. As you investigate further, you learn that the clients whose hostnames could not be reported have static IP addresses and are on subnet 192.168.3.0. What should you do?
+	- ==Manually create a PTR record in the 3.168.192.in-addr.arpa zone for each host.==
+
+9. The image shows the current Scavenging settings for the eastsim.com domain. As you check records in the zone, you find several records that haven't been updated for 16 days or longer. You need to make sure that records are automatically removed if they haven't been updated in the last 14 days. What should you do?
+![Dialog of Scavenging properties with the Scavanege sale resource records option unchecked, and the No-refresh interval set to 7 days and the Refresh interval set to 7 days.](https://cdn.testout.com/_version_5011/serverhybridcore2022v5-en-us/en-us/resources/text/t_dns_options_shc5/agescav2.jpg)
+- ==Enable automatic scavenging on the zone.==
+
+10. The serial number contained within the start of authority (SOA) record for a DNS zone on the primary server has been incremented. What condition does this indicate?
+	-==Information within the DNS zone has been changed, and secondary servers should initiate a zone transfer.==
+
+---
+### Quiz 5.2
+1. Drag the DNS term on the left to the appropriate definition on the right. (Each term may be used once, more than once, or not at all.)
+	1. Uses the IP address to find the host name (or FQDN).
+		- ==Reverse Lookup==
+	2. Client computers submit a DNS request to the DNS server and wait for a complete response.
+		- ==Recursion==
+	3. The process by which a DNS server or host uses root name servers and subsequent servers to perform name resolution.
+		- ==Recursion==
+	4. Uses the hostname (or the FQDN) to find the IP address.
+		- ==Forward lookup==
+
+2. You manage the DNS servers for the eastsim.com domain. You have a domain controller named DC1 that holds an Active Directory-integrated zone for the eastsim.com zone. You would like to configure DC1 to use forwarders and root name servers to resolve all DNS name requests for unknown zones. You edit the DNS server properties for DC1. On the Forwarders tab, you find that the Use root hints if no forwarders are available option is disabled. You also find that the entire Root Hints tab is disabled, and you are unable to add any root hint servers. How can you configure the server to use the internet root name servers for name resolution?
+	-==Delete the zone named . (dot) on DC1.==
+
+3. Your company's internet namespace is westsim.com, and your company's internal namespace is internal.westsim.com. Your network has two DNS servers, DNS1 and DNS2. DNS1 is configured with a root zone and is authoritative for the internal.westsim.com domain. DNS2 is authoritative for the westsim.com domain. All client computers are members of the internal.westsim.com domain and are configured to use DNS1 as the primary DNS server. Client computers on your internal network cannot resolve internet DNS names. You verify that client computers can resolve internal DNS names successfully. You also verify that the internal DNS server is configured to forward all unresolvable DNS names to the company's internet DNS server. You must keep your internal network as secure as possible while making sure that all client computers can resolve internet DNS names successfully. What should you do?
+	- ==On DNS1, delete the **.** zone.==
+
+4. Your Active Directory network uses the internal DNS namespace private.westsim.com. Several other Active Directory domains also exist, which are children of the private.westsim.com domain. On the internet, your company uses westsim.com for its public domain name. Your company manages its own DNS servers that are authoritative for the westsim.com zone. The private.westsim.com zone has been delegated to your company's Active Directory domain controllers, which are also DNS servers. Computers that are members of the private.westsim.com domain and all child domains must be able to resolve DNS names of internet resources. However, to help secure your network, DNS queries for resources in the private.westsim.com domain and all child domains must never be sent to internet DNS servers. Queries for internet names must go first to your public DNS server that is authoritative for the westsim.com domain. You need to configure your company's DNS servers to meet these requirements. What should you do? (Select two. Each correct choice is part of the solution.)
+	- ==Delete root hints to internet DNS servers on all DNS servers that are authoritative for the private.westsim.com zone or any child zone.==
+	- ==Create a forwarders list on all DNS servers that are authoritative for the private.westsim.com zone or any child zone. Forward to DNS servers that are authoritative for the parent zone.==
+
+5. You are the systems administrator for WestSim Corporation. You have been assigned to set up a new branch office in Tulsa. The branch will be represented by a single domain. You install a single DNS server called TulsaDNS and configure a primary zone for the branch office domain. You test name resolution and find that hosts can only resolve names for hosts within the domain. You need to enable clients in the Tulsa location to resolve names for hosts in other domains within your private network. You would like to minimize traffic across the WAN link between the sites. What should you do?
+	- ==Configure TulsaDNS to use forwarders.==
+
+6. Your company has an internet domain of westsim.com. Your internal network has three Active Directory domains named westsim.local, support.westsim.local, and research.westsim.local. You install a server named SL-SRV1 as a member of the westsim.local domain. You configure SL-SRV1 with a static IP address of 192.168.0.23. You configure the server to dynamically register its DNS name. Clients in the support.westsim.local domain need to access the SL-SRV1 server. Some users in the support.westsim.local domain are accustomed to using the support.westsim.local suffix when accessing network resources. To accommodate these users, you want to dynamically register the name SL-SRV1.support.westsim.local in addition to the SL-SRV1.westsim.local name in DNS. What should you do?
+	- ==On the SL-SRV1 server, edit the advanced TCP/IP properties of the server's local area connection. Add a connection-specific suffix of support.westsim.local. Apply the changes and then **run ipconfig /registerdns**.==
+
+7. Your company's internal namespace is westsim.local. This domain has two additional child domains named support.westsim.local and research.westsim.local. Due to security concerns, your company's internal network is not connected to the internet.
+Following are the DNS servers that you manage for your company:
+
+- Dns1, authoritative for . and westsim.local, IP address = 192.168.1.1
+- Dns2, authoritative for support.westsim.local, IP address = 192.168.2.1
+- Dns3, authoritative for research.westsim.local, IP address = 192.168.3.1
+
+All internal DNS domains are Active Directory-integrated domains. You have configured Dns1 with appropriate delegation records for the child zones.
+How should you configure root hints for Dns2 and Dns3?
+- ==In DNS Manager, edit the properties for Dns2 and Dns3. On the Root Hints tab, remove all default root hints entries and then add an entry for Dns1.==
+
+8. You are the administrator for the corp.westsim.com domain. The network has two child domains, acct.corp.westsim.com, and sales.corp.westsim.com. You need to configure DNS name resolution properties on the Srv2.sales.corp.westsim.com server. When an unqualified name is submitted for name resolution, you want the server to search using the following suffixes:
+- sales.corp.westsim.com
+- corp.westsim.com
+- westsim.com
+You want to configure the solution with the least effort possible. What should you do?
+- ==On the DNS tab, select Append parent suffixes of the primary DNS suffix.==
+
+9. You are the administrator for the corp.westsim.com domain. The network has two child domains, acct.corp.westsim.com and sales.corp.westsim.com. You need to configure DNS name resolution properties on the Srv2.sales.corp.westsim.com server. When a single label name is submitted for name resolution, you want the server to search using the following suffixes:
+- sales.corp.westsim.com
+- acct.corp.westsim.com
+- corp.westsim.com
+- westsim.com
+What should you do?
+- ==Edit the DNS suffix search list policy to configure the custom search suffixes of sales.corp.westsim.com, acct.corp.westsim.com, corp.westsim.com, and westsim.com.==
+
+---
+### Quiz 5.3
+1. Which of the following is true regarding Active Directory-integrated (ADI) zone data?
+	- ==Only members of the domain can update records.==
+
+2. Match each zone type on the left with the corresponding characteristics on the right. Each zone type may be used once, more than once, or not at all.
+	1. Multiple servers hold read-write copies of the zone data
+		- ==Active Directory-integrated==
+	2. The only writeable copy of the zone database
+		- ==Primary==
+	3. A read-only copy of the zone database
+		- ==Secondary==
+	4. Initates zone transfers
+		- ==Secondary==
+	5. The replication scope specifies domain controllers that can receive a copy of zone data
+		- ==Active Directory-integrated==
+
+3. You are setting up a new network in a single location with a single domain named eastsim.com. You install a DHCP server and configure it with a scope for the single subnet. You install a DNS server with a primary zone for the domain. What should you do to use dynamic updates to update DNS records in the zone automatically?
+	- ==Enable dynamic updates on the eastsim.com zone.==
+
+4. Your network has a single domain named southsim.com. DNS data for the domain is stored on the following servers:
+- DNS1 holds the primary zone for southsim.com.
+- DNS2 and DNS3 hold secondary zones for southsim.com.
+All three DNS servers are located on domain controllers. The DNS zone for the domain is configured to allow dynamic updates.You want to allow client computers to send DNS updates to any of the three servers and allow any of the three servers to update DNS records in the zone. What should you do?
+- ==On all three servers, change the zone type of the DNS zone to Active Directory-integrated.==
+
+5. Which of the following is true regarding the primary zone?
+	- ==Permission is required to get a copy of the zone.==
+
+6. Which zone contains authoritative DNS records that can be changed and copied to other zones?
+	- ==Primary zone==
+
+7. You are a systems administrator for WestSim Corporation. As part of a new security initiative, the IT department has developed a custom application that reports the hostname of all clients that try to access three sensitive servers in the accounting department. The application has been working for the last three months. The company expands and adds a new building with a LAN connection to the rest of the network. This building has its own subnet, 192.168.5.0. You create a scope on an existing DHCP server for this subnet. During a random check of the reporting software, you discover that the application reports the IP address but not the hostname for clients on the new subnet. Everything works as designed for hosts on other subnets. You check the DNS database and find that none of the hosts on that subnet have an associated PTR record. What should you do?
+	- ==Create a primary reverse lookup zone for subnet 192.168.5.0.==
+
+8. You are the network manager for the westsim.private domain. The SRV1 server runs all file and print services for the network. The DNS database has an A record that maps srv1.westsim.private to the IP address of 192.168.16.10. You want to create a PTR record that maps the IP address to the hostname. Which zone should you create the record in?
+	- ==16.168.192.in-addr.arpa==
+
+9. You are the network administrator for a single domain with three subnets. Two subnets have all Windows 10 computers. The conference room uses the third subnet. Traveling salesmen come to the conference room and plug in their laptops to gain network access. You have configured a DHCP server to deliver configuration information to hosts on this subnet. DNS is configured for dynamic updates. Over time, you notice that the size of the DNS database continues to grow. It is beginning to have an adverse effect on DNS server performance. What should you do?
+	- ==Enable scavenging of stale resource records on the zone and the DNS server.==
+
+10. Which of the following is true regarding the secondary zone?
+	- ==Always initiates the zone transfer.==
