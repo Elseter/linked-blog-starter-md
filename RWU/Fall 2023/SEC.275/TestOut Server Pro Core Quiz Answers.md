@@ -1180,3 +1180,148 @@ All three DNS servers are located on domain controllers. The DNS zone for the do
 
 10. Which of the following is true regarding the secondary zone?
 	- ==Always initiates the zone transfer.==
+
+---
+### Quiz 5.4
+1. Which of the following can you append to the end of the **dig** command to run a query for all the records in the zone?
+	- ==-axfr==
+
+2. Consider the following output from a **dig** command run on a Linux system.
+; <<>> DiG 8.2 <<>> westsim111.com  
+;;res options:init recurs defnam dnsrch  
+;;got answer:  
+;;->>HEADER<<-opcode:QUERY, status: NOERROR, id:4  
+;;flags: qr rd ra; QUERY:1, ANSWER:1, AUTHORITY:2, ADDITIONAL:0  
+;;QUERY SECTION:  
+;; westsim111.com, type = A, class = IN  
+  
+;;ANSWER SECTION:  
+westsim111.com. 7h33m IN A 76.141.43.129  
+;;AUTHORITY SECTION:  
+westsim111.com. 7h33m IN NS dns1.deriatct111.com.  
+westsim111.com. 7h33m IN NS dns2.deriatct222.com.  
+;;Total query time: 78 msec  
+;;FROM: localhost.localdomain to SERVER:default -- 202.64.49.150  
+;;WHEN: Tue Feb 16 23:21:24 2005  
+;;MSG SIZE sent: 30 rcvd:103
+
+What is the IP address of the DNS server that performed this name resolution?
+- ==202.64.49.150==
+
+3. You are troubleshooting a network connectivity issue on a Unix system. You're able to connect to remote systems by using their IP address, but you're unable to connect using the hostname. You check the TCP/IP configuration and notice that a DNS server IP address is configured. You decide to run some manual resolution queries to ensure that the communication between the Unix system and the DNS server are working correctly. Which utilities can you use to do this? (Select two.)
+	- ==**dig**==
+	- ==**nslookup**==
+
+4. Consider the following output.
+;; res options: init recurs defnam dnsrch  
+;;got answer:  
+;;->>HEADER<<-opcode:QUERY, status; NOERROR,id:4  
+;;flags: qr rd ra; QUERY:1, ANSWER:1, AUTHORITY:2, ADDITIONAL:0  
+;;QUERY SECTION:  
+;; westsim111.com, type = A, class = IN  
+  
+;;ANSWER SECTION:  
+westsim111.com. 7h33m IN A 76.141.43.129  
+;;AUTHORITY SECTION:  
+westsim111.com. 7h33m IN NS dns1.deriatct111.com.  
+westsim111.com. 7h33m IN NS dns2.deriatct222.com.  
+;;Total query time: 78 msec  
+;;FROM: localhost.localdomain to SERVER: default -- 202.64.49.150  
+;;WHEN: Tue Feb 16 23:21:24 2005  
+;;MSG SIZE sent: 30 rcvd: 103
+Which of the following utilities produced this output?
+- ==dig==
+
+5. A user reports that they cannot browse to a specific website on the internet. From their computer, you find that a ping test to the web server succeeds. A traceroute test shows 17 hops to the destination web server. What is the MOST likely cause of the problem?
+	-==Incorrect DNS server address==
+
+6. Which of the following commands do you use to clear the local DNS cache?
+	-==ipconfig /flushdns==
+
+7. Examine the following output:
+`Server: to.xct.mirrorxhq.net  
+`Address: 209.53.4.130  
+`Name: westxsim.com  
+`Address: 64.78.193.84
+Which of the following utilities produced this output?
+- ==nslookup==
+
+8. Mary calls to tell you that she can't connect to an intranet server called WebSrv1. From her computer, you ping the server's IP address. The ping test is successful. Which tool would you use on her workstation next to troubleshoot the problem?
+	-==nslookup==
+
+9. You need to perform a reverse lookup of the IP address 10.0.0.3. Which commands can you use to accomplish this? (Select two.)
+	- **==nslookup 10.0.0.3==**
+	- ==**dig -x 10.0.0.3**==
+
+10. Which of the following commands should you use to check the route a packet takes between a workstation and the DNS server?
+	- ==**tracert**==
+
+---
+### Quiz 5.5
+1. You are the network administrator for westsim.com. The network consists of a single Active Directory domain. All of the servers run Windows Server 2016. All of the clients run Windows 10. Clients routinely access a web application on a server named web1.westsim.com. During the course of the business day, you receive complaints that users attempting to access web1.westsim.com were directed to an unknown IP address on the internet. They accessed a website that looked similar to the web application on web1.westsim.co, but were provided with no functionality. After researching the internet IP address, you find it belongs to a group of attackers suspected of hacking into company websites. You determine that the compromise occurred because of DNS cache poisoning. To protect the server, you need to ensure that cache records on the DNS server cannot be overwritten until the Time to Live (TTL) period has expired. What should you do?
+	-==You should implement the DNS cache locking feature.==
+
+2. Which of the following helps prevent attacks that attempt to pollute information in the cache to direct traffic to a malicious site?
+	-==DNS cache locking==
+
+3. You are the network administrator for eastsim.com. The network consists of a single Active Directory domain. All of the servers run Windows Server 2016 Standard edition. All of the clients run Windows 10. A domain controller named DC1 functions as a DNS server that hosts a standard primary zone, eastsim.com. All of the other domain controllers host standard secondary zones for eastsim.com. A new corporate directive requires that all DNS communication be secure. The DNS records must be cryptographically signed by the DNS server so that clients can validate that the DNS server responses are authentic and have not been subject to tampering. You must configure DNS to comply with the new policy. What should you do?
+	- ==Implement DNS Security Extensions (DNSSEC).==
+
+4. You are responsible for managing a Windows Server 2016 system named DNS1 that functions as a DNS server. One of the domains owned by your organization is westsim.com, which is not integrated with Active Directory. Your DNS server is authoritative for this zone. Two other DNS servers in your organization named DNS2 and DNS3 contain a copy of the zone data in a multi-master configuration. You want to use DNSSEC to sign zone data digitally. You want to use DNS1 as the Key Master for DNSSEC. Which should you do?
+	- ==In DNS Manager, right-click the westsim.com zone and click DNSSEC > Sign the Zone.==
+
+5. Which of the following verifies that a server's response was not changed in transit and that the server sending the response is really who it claims to be?
+	- ==DNSSEC==
+
+6. You are the network administrator for corpnet.com. A new corporate policy requires that DNSSEC be implemented on the corpnet.com zone. A server named DNS1 is authoritative for the corpnet.com zone. You sign the corpnet.com zone and distribute trust anchors to all non-authoritative DNS servers that will perform DNSSEC validation of data from the zone. You need to prepare the clients to perform DNSSEC validation for the corpnet.com. What should you do?
+	- ==In Group Policy, configure a Name Resolution Policy.==
+
+7. What is the default pool size of ports for Windows Server 2022?
+	- ==2500==
+
+8. You are the network administrator for westsim.com. The network consists of a single Active Directory domain. All the servers run Windows Server 2016. All the clients run Windows 10. The company has one main office. There is one server named DNS1 with the DNS Server role installed. A new company security directive states that servers should not use port 49308. All other port ranges are acceptable and should not be excluded. You need to configure DNS1 to adhere to the new security requirement without any loss of DNS functionality. What should you do?
+	- ==You should set the SocketPoolExcludedPortRanges setting in the registry on the DNS servers to 49308-49308.==
+
+9. Which of the following commands allow you to view the socket pool size? (Select two.)
+	- ==**C:\>(Get-DnsServer).ServerSetting.SocketPoolSize**==
+	- ==**C:\>dnscmd /info /socketpoolsize**==
+
+10. You are the network administrator for Corpnet.com. The company has three domains named corpnet.com, east.corpnet.com, and west.corpnet.com. The DNS servers in each domain are only authoritative for the zones for their domains and are all member servers. You sign the corpnet.com DNS zone with DNSSEC. You need to enable the DNS servers that are not authoritative for the corpnet.com zone to perform DNSSEC validation of DNS responses for the corpnet.com zone. What should you do?
+	- ==Distribute a Trust Anchor to all DNS servers that are not authoritative for the corpnet.com zone.==
+
+---
+### Quiz 5.6 
+1. In a hybrid network that consists of an on-premises network and an Azure networked environment, which devices can query Azure DNS?
+	- ==Only Azure virtual network clients.==
+
+2. What type of forwarder is configured for the on-premises DNS server to allow it to communicate with Azure DNS?
+	- ==Conditional==
+
+3. Which of the following BEST describes an ExpressRoute?
+	- ==Azure service that provides a private connection to ensure data does not travel across the public internet.==
+
+4. When configuring a DNS private resolver in Azure, what is the purpose of the forwarding rules?
+	- ==To allow the Azure DNS to communicate with the on-premises DNS server.==
+
+5. Put the steps to configure a DNS private resolver in Azure in order.
+	- ==Configure two subnets in Azure.==
+	- ==Create the forwarding rules.==
+	- ==Create a conditional forwarder.==
+
+6. What type of zone does Azure DNS use?
+	- ==Private==
+
+7. Which of the following BEST describes Azure private zones?
+	- ==Can only be queried by devices in the Azure virtual network.==
+
+8. To ensure that the connection between Azure DNS and the on-premises DNS server is secure and encrypted, which of the following could you use? (Select two.)
+	- ==Azure's ExpressRoute==
+	- ==VPN==
+
+9. What are the two types of DNS servers used in a hybrid network environment? (Select two.)
+	- ==Azure==
+	- ==On-premises==
+
+10. When configuring a DNS private resolver in Azure, what are the two subnets used for? (Select two.)
+	- ==To act as the inbound endpoint with the on-premises DNS server.==
+	- ==To act as the outbound endpoint with the on-premises DNS server.==

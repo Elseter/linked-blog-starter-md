@@ -174,3 +174,45 @@ In this lab, your task is to complete the following:
 The zone must exist on a domain controller before it can be converted to an Active Directory-integrated zone.
 ### Answer
 ![[Screenshot 2023-10-07 at 4.48.16 PM.png]]
+
+---
+## 5.4.5 Explore nslookup
+### Prompt
+You are the administrator for the CorpNet.local domain. The CorpDC and CorpDC3 servers are the DNS servers for the domain. CorpDC resides in Building A, and CorpDC3 resides in Building B. Users in Building B report that they are unable to contact the CorpWeb server.
+
+In this lab, your task is to:
+
+- Use nslookup to query the DNS for the CorpWeb server using its fully qualified domain name (CorpWeb.CorpNet.xyz).
+    - What are your results?
+- Use nslookup to query the CorpDC3 DNS server for CorpWeb. Use the fully qualified domain name for both CorpDC3 and CorpWeb.
+    - What are your results?
+    - What is the problem?
+    - How would you resolve this problem?
+    - How would you verify that the problem has been fixed?
+### Answer
+![[Screenshot 2023-10-08 at 10.18.36 AM.png]]
+
+---
+## 5.5.8 Configure DNSSEC
+### Prompt
+Your partner company is increasing security as they prepare to launch a web server. They want to implement DNSSEC so users of the partner website have a high degree of confidence that they are communicating with the host they expect to communicate with, PartnerCorp.xyz.
+
+In this lab, your task is to use DNSSEC to sign the PartnerCorp.xyz zone as follows:
+
+- Make CampusDC1 the Key Master.
+- Add a Key Signing Key with the following non-default parameters:
+    - Key length (Bits): **1024**
+    - Rollover frequency (days): **730**
+- Add a Zone Signing Key with the following non-default parameters:
+    - Key length (Bits): **1024**
+    - Rollover frequency (days): **730**
+- Use NSEC3 to generate and use a random salt length of **8.**
+- Enable the distribution of trust anchors.
+- Configure Signing and Polling parameters as follows:
+    - DS record TTL (seconds): **4800**
+    - DNSKEY record TTL (seconds): **4800**
+- Refresh the zone to make sure the records have been signed.
+### Answer
+![[Screenshot 2023-10-08 at 11.00.19 AM.png]]
+
+---
