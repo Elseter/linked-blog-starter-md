@@ -263,3 +263,196 @@ In this lab, your task is to:
 - Save the changes to the switch's startup configuration file.
 ### Answer
 ![[Screenshot 2023-09-26 at 12.54.47 PM.png]]
+
+---
+## 5.11.6 Spoof MAC Addresses with SMAC
+### Prompt
+As an IT administrator, you need to know how security breaches are caused. You know that SMAC is used for MAC spoofing, so you are going to spoof your MAC address.
+
+In this lab, your task is to complete the following:
+
+- On Office2, use **ipconfig /all** and find the IP address and MAC address.
+- Using **SMAC**, spoof the MAC address on ITAdmin to match that of Office2.
+- Refresh the IP address on ITAdmin.
+- Verify the MAC and IP address now match Office2.
+### Answer
+![[Screenshot 2023-10-09 at 4.58.43 PM.png]]
+
+---
+## 5.11.9 Harden a Switch
+### Prompt
+You are the IT security administrator for a small corporate network. You need to increase the security on the switch in the networking closet.
+
+The following table lists the used and unused ports:
+
+|   |   |
+|---|---|
+|Unused Ports|Used Ports|
+|GE2  <br>GE7  <br>GE9-GE20  <br>GE25  <br>GE27-GE28|GE1  <br>GE3-GE6  <br>GE8  <br>GE21-GE24  <br>GE26|
+
+In this lab, your task is to:
+
+- Shut down the unused ports.
+- Configure the following Port Security settings for the used ports:
+    - Interface Status: **Lock**
+    - Learning Mode: **Classic Lock**
+    - Action on Violation: **Discard**
+---
+### Answer
+![[Screenshot 2023-10-09 at 5.25.04 PM.png]]
+
+---
+## 5.11.10 Secure Access to a Switch
+### Prompt
+You are the IT security administrator for a small corporate network. You need to increase the security on the switch in the Networking Closet by restricting access management and by updating the switch's firmware.
+
+In this lab, your task is to:
+
+- Create an access profile named _MgtAccess_ and configure it with the following settings:
+    
+    |   |   |
+    |---|---|
+    |Setting|Value|
+    |Access Profile Name|**MgtAccess**|
+    |Rule Priority|**1**|
+    |Management Method|**All**|
+    |Action|**Deny**|
+    |Applies to Interface|**All**|
+    |Applies to Source IP address|**All**|
+    
+- Add a profile rule to the _MgtAccess_ profile with the following settings:
+    
+    |   |   |
+    |---|---|
+    |Setting|Value|
+    |Rule Priority|**2**|
+    |Management Method|**HTTP**|
+    |Action|**Permit**|
+    |Applies to interface|**All**|
+    |Applies to Source IP address|**User defined**  <br>IP Version: **Version 4**  <br>IP Address: **192.168.0.10**  <br>Network Mask: **255.255.255.0**|
+    
+- Set the _MgtAccess_ profile as the active access profile.
+- Save the changes to the switch's startup configuration file using the default settings.
+- Update the firmware image to the latest version by downloading the firmware files found in **C:\Sx300_Firmware\Sx300_FW-1.2.7.76.ros**.
+
+If you need to log back into the switch, the username is **ITSwitchAdmin** and the password is **Admin$only**.
+### Answer
+![[Screenshot 2023-10-09 at 5.31.37 PM.png]]
+
+---
+## 5.11.11 Secure Access to a Switch 2
+### Prompt
+You are the IT security administrator for a small corporate network. You need to increase the security on the switch in the Networking Closet by creating an access control list. You have been asked to prevent video game consoles from connecting to the switch.
+
+In this lab, your task is to:
+
+- Create a MAC-based ACL named **GameConsoles**.
+- Configure the **GameConsoles** MAC-based access control entry (ACE) settings as follows:
+    
+|          |        |                              |                                                     |
+| -------- | ------ | ---------------------------- | --------------------------------------------------- |
+| Priority | Action | Destination  <br>MAC Address | Source MAC Address                                  |
+| 1        | Deny   | Any                          | Value: **00041F111111**  <br>Mask: **000000111111** |
+| 2        | Deny   | Any                          | Value: **005042111111**  <br>Mask: **000000111111** |
+| 3        | Deny   | Any                          | Value: **000D3A111111**  <br>Mask: **000000111111** |
+| 4        | Deny   | Any                          | Value: **001315111111**  <br>Mask: **000000111111** |
+| 5        | Deny   | Any                          | Value: **0009BF111111**  <br>Mask: **000000111111** |
+| 6        | Deny   | Any                          | Value: **00125A111111**  <br>Mask: **000000111111** |
+    
+- Bind the **GameConsoles** ACL to all of the **GE1-GE30** interfaces.
+    Use **Copy Settings** to apply the binding to multiple interfaces
+- Save the changes to the switch's startup configuration file. Use the default settings.
+### Answer
+![[Screenshot 2023-10-09 at 5.46.05 PM.png]]
+
+---
+## 5.12.4 Explore VLANs
+### Prompt
+You are the IT security administrator for a small corporate network. You need to increase the networking closet's security by implementing a CCTV system with IP cameras. As part of this task, you need to separate the CCTV data traffic on the network using a separate VLAN on the switch.
+
+The patch panel connections for the networking closet, lobby, and IT administration office are installed and ready for use (ports 18-20). A DHCP server is already configured to provide the IP cameras and the laptop in the IT administration office with the correct TCP/IP settings (port 21). For an easier implementation, create the logical VLAN first and then establish the physical connections of the IP cameras and the laptop.
+
+In this lab, your task is to perform the following:
+
+- Access the switch management console from ITAdmin using the following credentials:
+    - Address: **http://192.168.0.2**
+    - Username: **ITSwitchAdmin**
+    - Password: **Admin$only** (the password is case-sensitive)
+- Create and configure a VLAN on the switch as follows:
+    
+    - VLAN ID: **2**
+    - VLAN Name: **IPCameras**
+    - Configure ports GE18, GE19, GE20, GE21 as untagged..
+    
+    - Port 18 is connected to the network jack next to the laptop in the IT administration office.
+    - Port 19 is connected to the camera mount in the lobby.
+    - Port 20 is connected to the camera mount in the networking closet.
+    - Port 21 is connected to a DHCP server that provides IP addresses to the camera and the laptop.
+    
+- In the lobby and networking closet, perform the following:
+    - Connect a Cat5e cable to the RJ-45 ports on the IP camera and the IP camera wall plate.
+    - Mount the IP camera on the wall plate.
+- In the networking closet, connect the DHCP server to the VLAN using a Cat5e cable from switch port 21 to patch panel port 21 in the rack.
+- In the IT administration office, connect a Cat5e cable to the laptop's network port and the open port on the wall plate.
+- On IT-Laptop2, verify the VLAN configuration and IP camera installation as follows:
+    1. Select **Start** > **IP Cameras**.
+    2. Verify that the program detects the IP cameras on the VLAN 2 network.
+### Answer
+![[Screenshot 2023-10-10 at 9.13.49 AM.png]]
+![[Screenshot 2023-10-10 at 9.14.02 AM.png]]
+
+---
+## 5.13.5 Restrict Telnet and SSH Access
+### Prompt
+You are in the process of configuring a new router. The router interfaces connect to the following networks:
+
+|   |   |
+|---|---|
+|**Interface**|**Network**|
+|FastEthernet0/0|192.168.1.0/24|
+|FastEthernet0/1|192.168.2.0/24|
+|FastEthernet0/1/0|192.168.3.0/24|
+
+Only Telnet and SSH access from these three networks should be allowed.
+
+In this lab, your task is to:
+
+- Use the **access-list** command to create a standard numbered access list using number 5.
+- Add a **permit** statement for each network to the access list.
+- Use the **access-class** command to apply the access list to VTY lines 0–4. Use the **in** direction to filter incoming traffic.
+- Save your changes in the **startup-config** file.
+### Answer
+![[Screenshot 2023-10-10 at 12.40.59 PM.png]]
+
+---
+## 5.13.6 Permit Traffic
+### Prompt
+The Fiji router has been configured with Standard IP Access List 11. The access list is applied to the _Fa0/0 interface_. The access list must allow all traffic except traffic coming from hosts 192.168.1.10 and 192.168.1.12. However, you've noticed that it's preventing all traffic from being sent on Fa0/0. You remember that access lists contain an implied **deny any** statement. This means that any traffic not permitted by the list is denied. For this reason, access lists should contain at least one permit statement or all traffic is blocked.
+
+In this lab, your task is to:
+
+- Add a **permit any** statement to Access List 11 to allow all traffic other than the restricted traffic.
+- Save your changes in the **startup-config** file.
+### Answer
+![[Screenshot 2023-10-10 at 12.54.16 PM.png]]
+
+---
+## 5.13.7 Block Source Hosts
+### Prompt
+You have a small business network connected to the internet through a single router as shown in the network diagram. You have noticed that three hosts on the internet have been flooding your router with unwanted traffic. As a temporary measure, you want to prevent all communication from these three hosts until the issue is resolved.
+
+In this lab, your task is to:
+
+- Create a Standard Access List 25.
+- Add statements to the access list to block traffic from the following hosts:
+    - **199.68.111.199**
+    - **202.177.9.1**
+    - **211.55.67.11**
+- Add a statement to allow all other traffic from all other hosts.
+- Apply Access List 25 to the _Serial0/0/0 interface_ to filter incoming traffic.
+
+You can also use **199.68.111.199 0.0.0.0** (without the **host** parameter) to identify a specific host. You can also use **0.0.0.0 255.255.255.255** to identify any host. Because this is a temporary solution, you do not need to save your changes.
+### Answer
+![[Screenshot 2023-10-10 at 12.57.22 PM.png]]
+
+---

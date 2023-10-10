@@ -1056,3 +1056,105 @@ Your network architecture employs multiple VLANs for each of these network zones
 	- ==Flag==
 
 ---
+### Quiz 5.11
+1. Which of the following scenarios would typically utilize 802.1x authentication?
+	- ==Controlling access through a switch==
+
+2. You are the network administrator for a city library. Throughout the library are several groups of computers that provide public access to the internet. Supervision of these computers has been difficult. You've had problems with patrons bringing personal laptops into the library and disconnecting the network cables from the library computers to connect their laptops to the internet. The library computers are in groups of four. Each group of four computers is connected to a hub that is connected to the library network through an access port on a switch. You want to restrict access to the network so that only library computers are permitted connectivity to the internet. What can you do?
+	- ==Configure port security on the switch.==
+
+3. You manage a single subnet with three switches. They are connected to provide redundant paths between the switches. Which feature prevents switching loops and ensures there is only a single active path between any two switches?
+	- ==Spanning Tree Protocol==
+
+4. When configuring VLANs on a switch, which type of switch ports are members of all VLANs defined on the switch?
+	- ==Truck Ports==
+
+5. Which of the following best describes the concept of a virtual LAN?
+	- ==Devices on the same network logically grouped as if they were on separate networks.==
+
+6. Which of the following switch attacks associates the attacker's MAC address with the IP address of the victim's devices?
+	- ==ARP spoofing/poisoning==
+
+7. Drag each description on the left to the appropriate switch attack type on the right.
+	1. ARP spoofing/poisoning
+		- ==The source device sends frames to the attacker's MAC address instead of to the correct device.==
+	2. Dynamic Trunking Protocol
+		- ==Should be disabled on the switch's end user (access) ports before implementing the switch configuration into the network.==
+	3. MAC flooding
+		- ==Causes packets to fill up the forwarding table and consumes so much of the switch's memory that it enters a state called Fail Open Mode.==
+	4. MAC spoofing
+		- ==Can be used to hide the identity of the attacker's computer or impersonate another device on the network.==
+
+8. Which of the following attacks, if successful, causes a switch to function like a hub?
+	- ==MAC flooding==
+
+9. Which of the following is a typical goal of MAC spoofing?
+	- ==Bypass 802.1x port-based security==
+
+10. Which protocol should you disable on the user access ports of a switch?
+	- ==DTP==
+
+---
+### Quiz 5.12
+1. You are adding switches to your network to support additional VLANs. Unfortunately, the new switches are from a different vendor than the current switches. Which standard do you need to ensure that the switches are supported?
+	- ==802.1Q==
+
+2. When configuring VLANs on a switch, what is used to identify which VLAN a device belongs to?
+	- ==Switch Port==
+
+3. Which 802.1Q priority is IP phone traffic on a voice VLAN tagged with by default?
+	- ==5==
+
+4. The IT manager has asked you to create four new VLANs for a new department. As you are going through the VLAN configurations, you find some VLANs numbered 1002-1005. However, they are not in use. What should you do with these VLANs?
+	- ==Nothing. They are reserved and cannot be used or deleted.==
+
+5. The IT manager has asked you to create a separate VLAN to be used exclusively for wireless guest devices to connect to. Which of the following is the primary benefit of creating this VLAN?
+	- ==You can control security by isolating wireless guest devices within this VLAN.==
+
+6. A virtual LAN can be created using which of the following?
+	- ==Switch==
+
+7. Which of the following is an appropriate definition of a VLAN?
+	-==A logical grouping of devices based on service need, protocol, or other criteria.==
+
+8. You manage a network that uses a single switch. All ports within your building connect through the single switch. In the lobby of your building are three RJ-45 ports connected to the switch. You want to allow visitors to plug into these ports to gain internet access, but they should not have access to any other devices on your private network. Employees connected throughout the rest of your building should have both private and internet access. Which feature should you implement?
+	- ==VLANs==
+
+9. You run a small network for your business that has a single router connected to the internet and a single switch. You keep sensitive documents on a computer that you would like to keep isolated from other computers on the network. Other hosts on the network should not be able to communicate with this computer through the switch, but you still need to access the network through the computer. What should you use for this situation?
+	- ==VLAN==
+
+10. You are creating a VLAN for voice over IP (VoIP). Which command should you use?
+	- ==**switchport voice vlan [_number_]**==
+
+---
+### Quiz 5.13
+1. Which of the following should be configured on the router to filter traffic at the router level?
+	- ==Access control list==
+
+2. You've just deployed a new Cisco router that connects several network segments in your organization. The router is physically located in a cubicle near your office. You've backed up the router configuration to a remote location in an encrypted file. You access the router configuration interface from your notebook computer using an SSH client with the username admin01 and the password P@ssW0rd. You have used the MD5 hashing algorithm to protect the password. What should you do to increase the security of this device?
+	- ==Move the router to a secure server room.==
+
+3. Which of the following happens by default when you create and apply a new ACL on a router?
+	- ==All traffic is blocked.==
+
+4. Which type of ACL should be placed as close to the source as possible?
+	- ==Extended==
+
+5. You are deploying a brand new router. What is one of the first things you should do?
+	-==Update the firmware.==
+
+6. Which of the following can make passwords useless on a router?
+	- ==Not controlling physical access to the router==
+
+7. You've just deployed a new Cisco router that connects several network segments in your organization. The router is physically located in a server room that requires an ID for access. You've backed up the router configuration to a remote location in an encrypted file. You access the router configuration interface from your notebook computer using a Telnet client with a username of admin and a password of P@ssW0rd. You have used the MD5 hashing algorithm to protect the password. What should you do to increase the security of this device? (Select two.)
+	- ==Change the default administrative username and password.==
+	- ==Use an SSH client to access the router configuration.==
+
+8. You've just deployed a new Cisco router that connects several network segments in your organization. The router is physically located in a locked server closet. You use an FTP client to regularly back up the router configuration to a remote server in an encrypted file. You access the router configuration interface from a notebook computer that is connected to the router's console port. You've configured the device with the username admin01 and the password P@ssW0rd. You have used the MD5 hashing algorithm to protect the password. What should you do to increase the security of this device?
+	- ==Use SCP to back up the router configuration to a remote location.==
+
+9. You have configured your ACL to block outgoing traffic from a device with the IP address 192.168.1.52. Which type of ACL have you configured?
+	-==Standard==
+
+10. Which of the following does a router use to determine where packets are forwarded to?
+	- ==Routing table==
